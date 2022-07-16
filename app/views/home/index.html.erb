@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <body>
+      <%= stylesheet_link_tag 'bootstrap' %>
+      <%= stylesheet_link_tag 'home' %>
+      
+        <!--상단 카테고리바-fixed-->
+        <div class="container-fluid fixed-top" id="upper-category-bar">
+            <div class="row">
+              <% Category.all.order(display_order: :asc).each do |c| %>
+                <a class="col-3 category-bar-item" href="?category_id=<%= c.id %>" class="bar-item" role="button">
+                    <img src="<%= url_for(c.icon) %>" class="img-item" alt="...a">
+                    <p class="text-item"><%= c.name %></p>
+                </a>
+              <% end %>
+            </div>
+        </div>
+        <!--중간에서 보여줄 여행지 카드-->
+        <div class="container-fluid">
+            <div class="row middle">
+              <p class="notice"><%= notice %></p>
+              <p class="alert"><%= alert %></p>
+              <% @spots.each do |spot| %>
+                <a class="col-6 col-md-3 card" href="/spot/<%= spot.id %>" role="button">
+                    <img src="<%= url_for(spot.thumbnail) %>" class="card-img-top" alt="">
+                    <div class="card-body">
+                      <h5 class="card-title title-plus"><%= spot.name %></h5>
+                      <p class="card-text text-plus"><%= spot.address %></p>
+                      <p class="card-text text-plus">최대 <%= spot.max_people_count %>인</p>
+                      <p class="card-text text-plus"><%= spot.cost_per_day %>\/박</p>
+                    </div>
+                  </a>
+                <% end %>
+            </div>
+        </div>
+        <!--하단 카테고리바-fixed-->
+        <div class="container-fluid fixed-bottom" id="under-category-bar">
+            <div class="row">
+                <!--4/4/4-->
+                <a class="col-4 category-bar-item" href="/" role="button">
+                    <img src="/img/home.png" class="img-item2" alt="home">
+                </a>
+                <a class="col-4 category-bar-item" href="/admin" role="button">
+                    <img src="/img/admin.png" class="img-item2" alt="search">
+                </a>
+              <% if user_signed_in? %>
+              <a class="col-4 category-bar-item" href="/users/sign_out" role="button">
+                    <img src="/img/logout.png" class="img-item2" alt="mypage">
+                </a>
+              <% else %>
+                <a class="col-4 category-bar-item" href="/users/sign_in" role="button">
+                    <img src="/img/mypage.png" class="img-item2" alt="mypage">
+                </a>
+              <% end %>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <!--사이트 제목_아직미정-->
+        <title>Workation-Working-Vacation</title>
+        <!--사이트아이콘_아직미정-->
+        <link rel="shortcut icon" sizes="16x16 32x32 64x64" href="/img/m.png">
+        <!--검색엔진 소개글_아직미정-->
+        <meta content="힐링장소에서 일을 끝내보세요! Work hard, Enjoy Vacation!" name="description">
+        <!--한글깨짐 방지-->
+        <meta charset="utf-8">
+        <!--카카오톡 링크 소개글_아직미정-->
+        <meta property="og:title" content="Workation">
+        <meta property="og:image" content="">
+        <meta property="og:description" content="일을 끝내면 힐링이 눈앞에? Workation에서 당신의 힐링을 찾아보세요!">
+        <!--css링크-->
+        <link rel="stylesheet" href="./bootstrap.css">
+        <link rel="stylesheet" href="./root.css">
+        <link rel="stylesheet" href="./index.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,262 @@
+@charset "utf-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+html, body{
+    margin: 0;
+    padding: 0;
+}
+h1, h2, h3, h4{
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+}
+
+
+/******************* 1. 상단영역 *******************/
+.top{
+    /* background: #ccc; */
+    height: 15vh;
+	margin-bottom: 4vw;
+}
+#logo{
+    padding: 5vw 0 0 0;
+    text-align: center;
+    font-size: 6vw;
+    line-height: 13vw;
+}
+/* GNB 메뉴 */
+.gnb{
+    width: 380px;
+    margin: 0 auto;
+    font-size: 18px;
+    /* font-weight: bold; */
+    font-family: 'Roboto Condensed', sans-serif; 
+}
+.gnb>ul>p{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.gnb>ul>li{
+    float: left;
+}
+/* 메뉴 a링크 */
+.gnb>ul>li>a{
+    color: #eee;
+    text-decoration: none;
+    padding: 0 20px;
+    line-height: 30px;
+    font-size: 13px;
+}
+
+
+
+/******************* 2. 중앙 영역 *******************/
+.cont{
+    padding: 2vw;
+    height: 57vh;
+}
+h2{
+    /* text-align: center; */
+    /* text-decoration: overline; */
+    font-size: 20px;
+    margin-left: 10vw;
+    margin-top: 15vw;
+}
+.tit{
+    list-style: none;
+}
+.btn {
+    display: inline-block;
+    border-radius: 20px;
+    padding: 4vw 0vw 4vw 6vw;
+    /* font-weight: bold; */
+    text-decoration: none;
+    background: #eee;
+    color: black;
+    font-size: 4vw;
+    text-align: left;
+    border: #fff 1px solid;
+ }
+ .btn1 {
+    display: inline-block;
+    border-radius: 20px;
+    padding: 4vw 53vw 4vw 6vw;
+    /* font-weight: bold; */
+    text-decoration: none;
+    background: #eee;
+    color: black;
+    font-size: 4vw;
+    text-align: left;
+    border: #fff 1px solid;
+ }
+ .sign {
+    display: inline-block;
+    border-radius: 20px;
+    padding: 4vw 58vw 4vw 6vw;
+    /* font-weight: bold; */
+    text-decoration: none;
+    background: #b6a5ff;
+    color: black;
+    font-size: 4vw;
+    text-align: center;
+    border: #fff 1px solid;
+ }
+ .addi{
+    text-align: center;
+    /* max-width: 804px; */
+    /* width: min(40vw, 800px); */
+    /* @@@@@@@@@@@@@@@@@ 두줄 되지 않게!!@@@@@@@@@@@@@ 수정필요 */
+    margin: 0 auto;
+    margin-top: 10px;
+	 margin-bottom: 10vw;
+}
+.addi>ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+}
+ .addi>ul>li{
+    float: left;
+    margin-left: 20%;
+ }
+
+.tbx{
+    display: flex;
+    flex-wrap: wrap;
+}
+.tbx>nav{
+    flex: 1;
+    font-family: 'Roboto Condensed', sans-serif; 
+    font-weight: 300;
+}
+
+.pd{
+    font-size: min(3vw,23px);
+    margin: min(5vw, 40px) 0 5px 10px;
+    /* margin-left: 10px; */
+}
+h3{
+    font-weight: 700;
+}
+
+
+
+.mi{
+    text-align: center;
+}
+
+/* @@@@@@@@아직 적용 안됨 */
+.p:hover .pi>img{
+    display: none;
+}
+.p:hover .pi:first-child{
+    margin-top: 30px;
+    font-weight: 700;
+}
+/* @@@@@@@@2뭔가 문제있음 */
+.p:hover .pi>p{
+    display: block;
+    /* background-color: rgba(0, 0, 0, 0.7); */
+    /* color: #fff; */
+}
+
+.p:hover h3{
+    text-decoration: overline;
+    color: orange;
+}
+
+
+
+
+
+/******************* 3. 하단영역 *******************/
+.footer{
+    position : absolute;
+    bottom : 0;
+}
+.info{
+    background-color: #ccc;
+    font-family: 'Nanum Gothic', sans-serif;
+    padding: 10px;
+}
+.info>address{
+    padding-left: 10vw;
+}
+.blogo>img{
+    /* width: 20vw; */
+    width: min(20vw, 200px);
+}
+/* 하단링크 */
+.blink{
+    text-align: center;
+    /* max-width: 804px; */
+    /* width: min(40vw, 800px); */
+    /* @@@@@@@@@@@@@@@@@ 두줄 되지 않게!!@@@@@@@@@@@@@ 수정필요 */
+    margin: 0 auto;
+    /* margin-top: 10px; */
+}
+.blink>ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    /* &&&&&&&&&&&&&&&&&flex로 수정
+    display: flex; */
+    /* display: flex;
+    align-items: baseline;
+    justify-content: space-evenly; */
+
+}
+/* 가상요소로 clear */
+.blink>ul::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+.blink>ul>li{
+    float: left;
+    /* &&&&&&&&&&&&&&&&&flex로 수정 해보기???
+    flex: 1; */
+    text-align: center;
+    /* line-height: 10px;
+    flex: 1; */
+}
+/* 메뉴 a링크 */
+.blink>ul>li>a{
+    color: #fff;
+    text-decoration: none;
+    padding: 0 15px;
+    line-height: 39px;
+    font-size: min(1vw, 12px);
+    text-align: center;
+    font-weight: bold;
+}
+#l1{
+    max-width: 630px;
+}
+/* 내용많은 텍스트 */
+.addr{
+    max-width: 800px;
+    margin: 5% auto;
+    /* border: 4px double #222; */
+    padding: 10px;
+    /* box-sizing: border-box; */
+    text-align: left;
+    font-style: normal;
+    font-size: 9px;
+    line-height: 2;
+
+    color: #fff;
+}
+/* 하단로고 박스 */
+.fn{
+    /* width: 300px; */
+    text-align: center;
+}
+.blink>ul::after{
+    content: '';
+    display: block;
+    clear: both;
+}

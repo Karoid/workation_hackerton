@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>select</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <%= stylesheet_link_tag 'show' %>
+
+  
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <script>
+    var days = 0
+    var price_per_day = 0
+    $(document).ready(function(){
+        $('#reservation').click(function(){
+          $('.reservation_detail').addClass('active')
+        })
+      $('.reservation_detail .exit').click(function(){
+          $('.reservation_detail').removeClass('active')
+        })
+      
+      $('input[name="daterange"]').daterangepicker({
+        
+      }, function(start, end, label) {
+        days = (end - start+1)/86400000;
+        price_per_day = parseInt($('input[name="daterange"]').data('price')) * days
+        refreshTotalPrice()
+      });
+      setTimeout(function(){refreshTotalPrice()},1000);
+      $('.people_count').on('change',function(){
+        refreshTotalPrice()
+      })
+    })
+    function addPeoplePrice(){
+      var price_per_people = 0
+      $('.people_count').each(function(i, el){
+        console.log(el)
+        add_price = parseInt(el.dataset.price) * parseInt(el.value)
+        if(!isNaN(add_price))
+        	price_per_people += add_price
+      })
+      return price_per_people
+    }
+    function refreshTotalPrice(){
+      total_price = addPeoplePrice();
+      total_price += price_per_day;
+      $('.total_cost').text('총액'+total_price + '원')
+    }
+    </script>
+  
+</head>
+
+    <!-- 1. 상단영역 -->
+    <header class="top">
+        <!-- 로고, 뒤로가기? -->
+        <h1 id="logo">
+            <img src="/img/airplane.png" alt="Workation">   Workation
+        </h1>
+        
+    </header>
+    <!-- 2. 메인영역 -->
+    <main class="cont">
+        <!-- 이미지 -->
+        <div id="cbx">
+
+
+            <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="<%= url_for(@spot.thumbnail) %>" class="d-block w-100" alt="tempimg.png">
+                  </div>
+                  <% @spot.detail_images.each do |image| %>
+                  <div class="carousel-item">
+                    <img src="<%= url_for(image) %>" class="d-block w-100" alt="tempimg.png">
+                  </div>
+                  <% end %>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+
+
+            <!-- <img src="tempimg.png" alt="숙소사진"> -->
+            <div class="cat">
+                <h2><%= @spot.name%></h2>
+                <!-- <br> -->
+                <h4>최대 인원 <%= @spot.max_people_count %>명</h4>
+                    <br>
+                <p>
+                    <%= @spot.description_facility %></p>
+
+                
+            </div>
+            
+            <div class="cat">
+                <h2>퇴근 후 놀러갈 수 있는 장소</h2>
+              <br>
+              <p>
+                 <%= @spot.description_destination %>
+              </p>
+            </div>
+            <div class="cat">
+                <h2>가격</h2>
+                <%= @spot.cost_per_day %>\ /박<br/>
+              성인 <%= @spot.cost_per_people %>\ /명<br/>
+             어린이 <%= @spot.cost_per_people_child %>\ /명<br/>
+              아동 <%= @spot.cost_per_people_baby %>\ /명<br/>
+            </div>
+            
+        </div>
+		
+        <address class="info addr" id='reservation'>
+            예약하기
+        </address>
+        
+      <div class='reservation_detail'>
+        <div class='exit'>
+          <img src="/img/close.png" alt="">
+        </div>
+        <form action="">
+          <input type="text" name='daterange' data-price='<%=@spot.cost_per_day%>'/>
+          <div class='reservation_row'>
+            <div class='label'>성인</div>
+            <input type="number" name='people_count' class='people_count' data-price='<%=@spot.cost_per_people%>'> 명
+          </div>
+          <div class='reservation_row'>
+            <div class='label'>어린이</div>
+            <input type="number" name='people_child_count' class='people_count' data-price='<%=@spot.cost_per_people_child%>'> 명
+          </div>
+          <div class='reservation_row'>
+            <div class='label'>유아</div>
+            <input type="number" name='people_baby_count' class='people_count' data-price='<%=@spot.cost_per_people_baby%>'> 명
+          </div>
+          
+          <div class="total_cost">
+            
+          </div>
+          
+           <button class="info addr" type='submit'>
+            예약하기
+            </button>
+        </form>
+        
+      </div>
+    </main>
+    <!-- 3. 하단영역 -->
+    <footer>
+        <!-- 하단로고 -->
+        <!-- <div class="blogo">
+            $30.00 /박
+        </div> -->
+        
+    </footer>
+    <!--하단 카테고리바-fixed-->
+        <div class="container-fluid fixed-bottom" id="under-category-bar">
+            <div class="row">
+                <!--4/4/4-->
+                <a class="col-4 category-bar-item" href="/" role="button">
+                    <img src="/img/home.png" class="img-item2" alt="home">
+                </a>
+                <a class="col-4 category-bar-item" href="/admin" role="button">
+                    <img src="/img/admin.png" class="img-item2" alt="search">
+                </a>
+              <% if user_signed_in? %>
+              <a class="col-4 category-bar-item" href="/users/sign_out" role="button">
+                    <img src="/img/logout.png" class="img-item2" alt="mypage">
+                </a>
+              <% else %>
+                <a class="col-4 category-bar-item" href="/users/sign_in" role="button">
+                    <img src="/img/mypage.png" class="img-item2" alt="mypage">
+                </a>
+              <% end %>
+            </div>
+        </div>
+
+</html>

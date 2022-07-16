@@ -1,0 +1,105 @@
+<%= stylesheet_link_tag 'devise/sessions/new' %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workation</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <!-- 1. 상단부분 -->
+    <header class="top">
+        <h1 id="logo">
+          <a href='/' style='color: black;text-decoration: none'>
+            <img src="/img/airplane-ticket.png" width="70" id="logo">
+            Workation
+          </a>
+        </h1>
+    </header>
+    <!-- 2. 중앙부분 -->
+    <main class="cont">
+        <h2 id="forwards">Login to your Account</h2><br>
+        <!-- 팀 박스 -->
+        <div class="tbx">
+            <nav>
+                <ul>
+                    <input type="text" name="" size="31" placeholder="Email" class="btn">
+                    <!-- <li class="tit">Email</li> -->
+                    <br><br>
+                    <input type="text" name="" size="5" placeholder="Password" class="btn1">
+                    <!-- <li class="btn1">Password</li> -->
+                    <br><br>
+                    <li class="sign">Sign in</li>
+                </ul>
+                <br>
+            </nav>
+
+        </div>
+        <div class="addi">
+            <ul>
+                <li>
+                    Sign up
+                </li>
+                <li>
+                    Forgot Password
+                </li>
+            </ul>
+            
+                <br><br><br><br><br><br><br><br><br><br>
+        </div>
+
+    </main>
+
+
+
+
+
+    <!-- 3. 하단영역 -->
+    <footer class="info">
+        <!-- 회사주소 -->
+        <address class="addr">
+            Workation 주소:
+            <br>
+            서울캠퍼스
+            <br>
+            (04763) 서울특별시 성동구 왕십리로 222        </address>
+        <!-- nhl로고 -->
+        <div class="fn">
+        </div>
+        <!-- 하단링크 -->
+        <div id="l2" class="blink">
+            <ul>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
+<!--
+ <h2>Log in</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "current-password" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Log in" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+-->
